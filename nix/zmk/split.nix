@@ -19,6 +19,7 @@ in runCommand name ({
   buildKeyboard ((lib.attrsets.removeAttrs args [ "shield" "parts" ]) // {
     name = "${name}-${part}";
     shield = lib.replaceStrings [ "%PART%" ] [ part ] shield;
+    board = lib.replaceStrings [ "%PART%" ] [ part ] board;
     westDeps = args.westDeps or westDeps;
   })
 ))) ''
