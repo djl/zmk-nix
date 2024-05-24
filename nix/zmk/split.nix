@@ -5,7 +5,7 @@
 
 { name ? "${args.pname}-${args.version}"
 , board
-, shield
+, shield ? ""
 , parts ? [ "left" "right" ]
 , ... } @ args:
 

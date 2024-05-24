@@ -4,7 +4,7 @@
 }:
 
 { board
-, shield
+, shield ? ""
 , src
 , zephyrDepsHash
 , name ? "zmk"
@@ -19,8 +19,7 @@
     "-s" "zmk/app"
     "-b" board
     "--"
-    "-DSHIELD=${shield}"
-  ] ++ extraCmakeFlags;
+  ] ++ (if (shield != "") then ["-DSHIELD=${shield}"] else []) ++ extraCmakeFlags;
 
   preConfigure = ''
     westBuildFlagsArray+=("-DZMK_CONFIG=$(readlink -f ${lib.escapeShellArg config})")
